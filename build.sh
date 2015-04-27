@@ -5,7 +5,7 @@ set -x
 
 enable_email=0
 admin_email=
-sync_remote=
+sync_remote=rsync://archive.ubuntu.com/ubuntu
 mirror_path=/data/ubuntu
 
 common_deps="rsync nginx"
