@@ -1,0 +1,23 @@
+#!/bin/bash
+
+export LC_ALL=C
+export DEBIAN_FRONTEND=noninteractive
+minimal_apt_get_install='apt-get install -y --no-install-recommends'
+
+
+# script preprocessing
+sed_script () {
+    local sed_command
+    local infile
+    local outpath
+
+    sed_command=$1
+    infile=$2
+    outpath="/usr/local/bin/${infile}"
+
+    sed "${sed_command}" "/build/scripts/${infile}.in" > "${outpath}" \
+        && chmod a+x "${outpath}"
+}
+
+
+# vim:set ai et ts=4 sw=4 sts=4 fenc=utf-8:

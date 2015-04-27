@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec rsync -a @SYNC_REMOTE@ @MIRROR_PATH@
