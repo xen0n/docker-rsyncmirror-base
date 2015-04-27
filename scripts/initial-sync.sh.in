@@ -1,3 +1,3 @@
 #!/bin/bash
 
-exec rsync -a @SYNC_REMOTE@ @MIRROR_PATH@
+exec rsync -a --progress @SYNC_REMOTE@ @MIRROR_PATH@
