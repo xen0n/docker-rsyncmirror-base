@@ -7,6 +7,7 @@ enable_email=0
 admin_email=
 sync_remote=rsync://archive.ubuntu.com/ubuntu
 mirror_path=/data/ubuntu
+mirror_name=ubuntu
 
 common_deps="rsync nginx"
 mail_deps="mailx"
@@ -25,8 +26,9 @@ sed_command="s/@ENABLE_EMAIL@/${enable_email}/;"
 sed_command="${sed_command} s/@ADMIN_EMAIL@/${admin_email}/;"
 sed_command="${sed_command} s#@SYNC_REMOTE@#${sync_remote}#;"
 sed_command="${sed_command} s#@MIRROR_PATH@#${mirror_path}#;"
+sed_command="${sed_command} s/@MIRROR_NAME@/${mirror_name}/;"
 
-sed_script "${sed_command}" ubuntu-mirror-sync.sh
+sed_script "${sed_command}" mirror-sync.sh
 sed_script "${sed_command}" initial-sync.sh
 
 

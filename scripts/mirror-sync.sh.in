@@ -10,7 +10,7 @@ adminmail=@ADMIN_EMAIL@
 sendemail=@ENABLE_EMAIL@
 
 # Subject is the subject of our email
-subject="Ubuntu Mirror Sync Finished"
+subject="[mirror-@MIRROR_NAME@] Mirror Sync Finished"
 
 ## Setup the server to mirror
 remote=@SYNC_REMOTE@
@@ -24,7 +24,7 @@ failures=0
 status=1
 pid=$$
 
-echo "`date +%x-%R` - $pid - Started Ubuntu Mirror Sync" >> $log
+echo "`date +%x-%R` - $pid - Started Mirror Sync" >> $log
 while [[ "$complete" != "true" ]]; do
 
         if [[ $failures -gt 0 ]]; then
@@ -42,17 +42,17 @@ while [[ "$complete" != "true" ]]; do
                 rsync -a --delete-after $remote $local >> $log
                 status=$?
         fi
-        
+
         if [[ $status -ne "0" ]]; then
                 complete="false"
                 (( failures += 1 ))
         else
-                echo "`date +%x-%R` - $pid - Finished Ubuntu Mirror Sync" >> $log
+                echo "`date +%x-%R` - $pid - Finished Mirror Sync" >> $log
 
                 # Send the email
                 if [[ -x /usr/bin/mail && "$sendemail" -eq "1" ]]; then
                 mail -s "$subject" "$adminmail" <<OUTMAIL
-Summary of Ubuntu Mirror Synchronization
+Summary of Mirror Synchronization
 PID: $pid
 Failures: $failures
 Finish Time: `date`
