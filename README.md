@@ -9,7 +9,7 @@ uncertain about the image's workings.**
 1.  Customize `./mirror-config` to your need;
 2.  Build and enjoy.
 
-    ```docker
+    ```dockerfile
     FROM xen0n/rsyncmirror-base:latest
     MAINTAINER Dev E. Loper <test@example.com>
 
