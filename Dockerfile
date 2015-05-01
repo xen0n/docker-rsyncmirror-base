@@ -6,7 +6,11 @@ MAINTAINER Wang Xuerui <idontknw.wang@gmail.com>
 ADD . /build
 
 RUN /build/prepare.sh && \
-    /build/build.sh && \
+    /build/build.sh
+
+
+ONBUILD ADD ./mirror-config /build/
+ONBUILD RUN /build/setup.sh && \
     /build/cleanup.sh
 
 
